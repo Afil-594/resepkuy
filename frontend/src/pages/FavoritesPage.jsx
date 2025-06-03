@@ -1,4 +1,4 @@
-// frontend/src/pages/FavoritesPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
@@ -58,7 +58,7 @@ const FavoritesPage = () => {
   );
 };
 
-// Styling dengan skema warna baru
+
 const primaryColor = '#153568';
 const secondaryColor = '#fcb936';
 
@@ -74,7 +74,7 @@ const pageTitleStyle = {
   fontWeight: 'bold',
   color: primaryColor,
   textAlign: 'center',
-  marginBottom: '40px', // Jarak lebih banyak
+  marginBottom: '40px', 
   paddingBottom: '15px',
   borderBottom: `4px solid ${secondaryColor}`,
   display: 'inline-block',
@@ -99,7 +99,7 @@ const emptyMessageStyle = {
 };
 
 const browseLinkStyle = {
-    display: 'inline-block', // Agar bisa di-margin auto dan padding bekerja
+    display: 'inline-block', 
     padding: '12px 25px',
     backgroundColor: primaryColor,
     color: 'white',
@@ -110,7 +110,7 @@ const browseLinkStyle = {
     transition: 'background-color 0.3s, transform 0.2s',
     boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
 };
-// browseLinkStyle:hover { backgroundColor: '#0f2a50', transform: 'translateY(-2px)' }
+
 
 const gridStyle = {
   display: 'grid',
@@ -122,17 +122,17 @@ const cardWrapperStyle = {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#fff', // Latar kartu
-    borderRadius: '12px', // Samakan dengan RecipeCard jika perlu
-    boxShadow: '0 6px 18px rgba(0,0,0,0.09)', // Samakan dengan RecipeCard
-    overflow: 'hidden', // Penting jika RecipeCard tidak punya overflow sendiri
+    backgroundColor: '#fff', 
+    borderRadius: '12px', 
+    boxShadow: '0 6px 18px rgba(0,0,0,0.09)', 
+    overflow: 'hidden', 
 };
 
 const removeButtonStyle = {
     position: 'absolute',
-    top: '12px', // Sesuaikan posisi
+    top: '12px', 
     right: '12px',
-    background: `rgba(21, 53, 104, 0.8)`, // Warna primer dengan transparansi
+    background: `rgba(21, 53, 104, 0.8)`, 
     color: 'white',
     border: 'none',
     borderRadius: '6px',
@@ -145,6 +145,6 @@ const removeButtonStyle = {
     transition: 'background-color 0.2s ease',
     boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
 };
-// removeButtonStyle:hover { background: `rgba(21, 53, 104, 1)` }
+
 
 export default FavoritesPage;

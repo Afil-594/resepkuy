@@ -1,6 +1,6 @@
-// frontend/src/components/ShoppingList.jsx
+
     import React from 'react';
-    import { FaCopy } from 'react-icons/fa'; // Ikon untuk tombol salin
+    import { FaCopy } from 'react-icons/fa'; 
 
     const ShoppingList = ({ ingredients }) => {
       if (!ingredients || ingredients.length === 0) {
@@ -8,10 +8,10 @@
       }
 
       const handleCopyToClipboard = () => {
-        // Format teks daftar belanja: setiap bahan di baris baru dengan tanda strip
+        
         const shoppingListText = ingredients.map(ing => `- ${ing.original}`).join('\n');
 
-        // Gunakan navigator.clipboard API untuk menyalin ke clipboard
+        
         navigator.clipboard.writeText(shoppingListText)
           .then(() => {
             alert('Daftar belanja berhasil disalin ke clipboard!');
@@ -31,7 +31,7 @@
               </li>
             ))}
           </ul>
-          {ingredients.length > 0 && ( // Hanya tampilkan tombol jika ada bahan
+          {ingredients.length > 0 && ( 
             <button onClick={handleCopyToClipboard} style={buttonStyle} title="Salin Daftar Belanja">
               <FaCopy style={{ marginRight: '8px' }} />
               Salin Daftar Belanja
@@ -41,28 +41,28 @@
       );
     };
 
-    // Styling
+    
     const containerStyle = {
       padding: '15px',
-      backgroundColor: '#f8f9fa', // Warna latar sedikit beda
+      backgroundColor: '#f8f9fa', 
       borderRadius: '6px',
       border: '1px solid #dee2e6',
     };
 
     const listStyle = {
-      listStyleType: 'none', // Atau 'disc' jika ingin ada bullet point
-      paddingLeft: 0, // Hapus padding default jika list-style-type none
+      listStyleType: 'none', 
+      paddingLeft: 0, 
       marginBottom: '15px',
     };
 
     const listItemStyle = {
       padding: '6px 0',
-      borderBottom: '1px dashed #e0e0e0', // Garis putus-putus antar item
+      borderBottom: '1px dashed #e0e0e0', 
       fontSize: '0.95rem',
       color: '#495057',
     };
-    // Hapus border-bottom untuk item terakhir
-    // Ini bisa dilakukan dengan :last-child di CSS, atau sedikit logika di render jika perlu
+    
+    
 
     const buttonStyle = {
       backgroundColor: '#007bff',
@@ -75,10 +75,10 @@
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '100%', // Tombol mengisi lebar kontainer
+      width: '100%', 
       transition: 'background-color 0.2s ease',
     };
-    // buttonStyle:hover { backgroundColor: '#0056b3'; } // Efek hover via CSS
+    
 
     export default ShoppingList;
     

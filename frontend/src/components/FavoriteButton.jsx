@@ -1,14 +1,14 @@
-// frontend/src/components/FavoriteButton.jsx
-import React, { useState, useEffect } from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa'; // Menggunakan ikon dari react-icons
 
-// Fungsi helper untuk mengambil favorit dari localStorage
+import React, { useState, useEffect } from 'react';
+import { FaHeart, FaRegHeart } from 'react-icons/fa'; 
+
+
 const getFavoritesFromStorage = () => {
   const favorites = localStorage.getItem('favoriteRecipes');
-  return favorites ? JSON.parse(favorites) : []; // Mengembalikan array kosong jika tidak ada
+  return favorites ? JSON.parse(favorites) : []; 
 };
 
-// Fungsi helper untuk menyimpan favorit ke localStorage
+
 const saveFavoritesToStorage = (favorites) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
 };
@@ -16,17 +16,17 @@ const saveFavoritesToStorage = (favorites) => {
 const FavoriteButton = ({ recipe }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Cek apakah resep ini sudah jadi favorit saat komponen dimuat atau recipe.id berubah
+  
   useEffect(() => {
-    if (recipe && recipe.id) { // Pastikan recipe dan recipe.id ada
+    if (recipe && recipe.id) { 
       const currentFavorites = getFavoritesFromStorage();
-      // Cek apakah ada resep di currentFavorites yang id-nya sama dengan recipe.id
+      
       setIsFavorite(currentFavorites.some(favRecipe => favRecipe.id === recipe.id));
     }
-  }, [recipe]); // Bergantung pada prop recipe
+  }, [recipe]); 
 
   const toggleFavorite = () => {
-    if (!recipe || !recipe.id) { // Pengaman jika recipe atau recipe.id tidak ada
+    if (!recipe || !recipe.id) { 
       console.error("Tidak bisa menambahkan/menghapus favorit: data resep tidak lengkap.");
       return;
     }
@@ -35,23 +35,23 @@ const FavoriteButton = ({ recipe }) => {
     let updatedFavorites;
 
     if (isFavorite) {
-      // Hapus dari favorit: filter keluar resep dengan id yang sama
+      
       updatedFavorites = currentFavorites.filter(favRecipe => favRecipe.id !== recipe.id);
     } else {
-      // Tambah ke favorit: tambahkan objek resep saat ini
-      // Pastikan tidak ada duplikat sebelum menambahkan (meskipun UI seharusnya mencegah ini)
+      
+      
       if (!currentFavorites.some(favRecipe => favRecipe.id === recipe.id)) {
-        updatedFavorites = [...currentFavorites, recipe]; // Simpan seluruh objek resep
+        updatedFavorites = [...currentFavorites, recipe]; 
       } else {
-        updatedFavorites = currentFavorites; // Seharusnya tidak terjadi jika logika isFavorite benar
+        updatedFavorites = currentFavorites; 
       }
     }
 
     saveFavoritesToStorage(updatedFavorites);
-    setIsFavorite(!isFavorite); // Update state untuk mengubah ikon
+    setIsFavorite(!isFavorite); 
   };
 
-  // Jangan render tombol jika data resep tidak ada
+  
   if (!recipe || !recipe.id) {
     return null;
   }
@@ -67,12 +67,12 @@ const FavoriteButton = ({ recipe }) => {
   );
 };
 
-// Styling untuk tombol
+
 const buttonStyle = {
   background: 'none',
   border: 'none',
   cursor: 'pointer',
-  fontSize: '1.8rem', // Ukuran ikon
+  fontSize: '1.8rem', 
   padding: '5px',
   display: 'flex',
   alignItems: 'center',

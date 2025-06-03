@@ -1,20 +1,20 @@
-// frontend/src/components/RecipeFilters.jsx
+
 import React, { useState } from 'react';
 
 const RecipeFilters = ({ onFilterApply }) => {
   const [cuisine, setCuisine] = useState('');
   const [diet, setDiet] = useState('');
   const [maxCalories, setMaxCalories] = useState('');
-  // Tambahkan state lain untuk filter jika diperlukan (misal: maxReadyTime)
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Panggil fungsi onFilterApply dari props dengan membawa data filter
+    
     onFilterApply({
       cuisine: cuisine.trim(),
-      diet: diet, // Diet biasanya dari dropdown, jadi tidak perlu trim
+      diet: diet, 
       maxCalories: maxCalories.trim() ? parseInt(maxCalories.trim()) : null,
-      // ...filter lain
+      
     });
   };
 
@@ -41,7 +41,7 @@ const RecipeFilters = ({ onFilterApply }) => {
             id="diet"
             value={diet}
             onChange={(e) => setDiet(e.target.value)}
-            style={inputStyle} // Bisa gunakan style yang sama atau buat baru untuk select
+            style={inputStyle} 
           >
             <option value="">Semua Diet</option>
             <option value="vegetarian">Vegetarian</option>
@@ -62,7 +62,7 @@ const RecipeFilters = ({ onFilterApply }) => {
             value={maxCalories}
             onChange={(e) => setMaxCalories(e.target.value)}
             placeholder="cth: 500"
-            min="0" // Atribut HTML untuk input number
+            min="0" 
             style={inputStyle}
           />
         </div>
@@ -78,7 +78,7 @@ const RecipeFilters = ({ onFilterApply }) => {
   );
 };
 
-// Contoh styling dasar untuk RecipeFilters
+
 const formStyle = {
   padding: '20px',
   border: '1px solid #e0e0e0',
@@ -89,7 +89,7 @@ const formStyle = {
 
 const filterGridStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', // Responsive grid
+  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
   gap: '20px',
   marginBottom: '20px',
 };
@@ -119,13 +119,13 @@ const buttonStyle = {
   padding: '12px 25px',
   fontSize: '1rem',
   color: 'white',
-  backgroundColor: '#5cb85c', // Warna hijau untuk filter, beda dari search utama
+  backgroundColor: '#5cb85c', 
   border: 'none',
   borderRadius: '6px',
   cursor: 'pointer',
   transition: 'background-color 0.3s ease',
-  display: 'block', // Agar bisa di-margin auto jika perlu
-  margin: '0 auto', // Pusatkan tombol
+  display: 'block', 
+  margin: '0 auto', 
 };
 
 export default RecipeFilters;

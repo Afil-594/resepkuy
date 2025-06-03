@@ -1,23 +1,23 @@
-    // frontend/src/components/ReviewSection.jsx
+    
     import React, { useState, useEffect } from 'react';
-    import { getReviewsAPI, addReviewAPI } from '../services/api'; // Fungsi API yang sudah kita buat
-    import { FaStar } from 'react-icons/fa'; // Ikon bintang
+    import { getReviewsAPI, addReviewAPI } from '../services/api'; 
+    import { FaStar } from 'react-icons/fa'; 
 
     const ReviewSection = ({ recipeId }) => {
       const [reviews, setReviews] = useState([]);
       const [isLoadingReviews, setIsLoadingReviews] = useState(false);
       const [errorReviews, setErrorReviews] = useState('');
 
-      // State untuk form review baru
+      
       const [username, setUsername] = useState('');
-      const [rating, setRating] = useState(0); // 0 berarti belum ada rating dipilih
-      const [hoverRating, setHoverRating] = useState(0); // Untuk efek hover pada bintang
+      const [rating, setRating] = useState(0); 
+      const [hoverRating, setHoverRating] = useState(0); 
       const [comment, setComment] = useState('');
       const [isSubmitting, setIsSubmitting] = useState(false);
       const [submitError, setSubmitError] = useState('');
       const [submitSuccess, setSubmitSuccess] = useState('');
 
-      // Fungsi untuk mengambil review
+      
       const fetchReviews = async () => {
         if (!recipeId) return;
         setIsLoadingReviews(true);
@@ -33,7 +33,7 @@
         }
       };
 
-      // Ambil review saat komponen dimuat atau recipeId berubah
+      
       useEffect(() => {
         fetchReviews();
       }, [recipeId]);
@@ -55,11 +55,11 @@
         try {
           await addReviewAPI(recipeId, { username, rating, comment });
           setSubmitSuccess('Ulasan Anda berhasil dikirim!');
-          // Reset form
+          
           setUsername('');
           setRating(0);
           setComment('');
-          // Ambil ulang daftar review untuk menampilkan yang baru
+          
           fetchReviews();
         } catch (err) {
           console.error("Error submitting review:", err);
@@ -161,7 +161,7 @@
       );
     };
 
-    // Styling
+    
     const sectionContainerStyle = { marginTop: '40px', paddingTop: '30px', borderTop: '1px solid #eee' };
     const mainTitleStyle = { fontSize: '1.8rem', color: '#333', marginBottom: '20px' };
     const subTitleStyle = { fontSize: '1.4rem', color: '#444', marginBottom: '15px' };
@@ -174,10 +174,10 @@
     const starContainerStyle = { display: 'flex', gap: '5px' };
     const starStyle = { cursor: 'pointer', fontSize: '1.8rem', transition: 'color 0.2s' };
     const submitButtonStyle = { backgroundColor: '#28a745', color: 'white', padding: '10px 15px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '1rem', opacity: 1 };
-    // const submitButtonDisabledStyle = { ...submitButtonStyle, opacity: 0.6, cursor: 'not-allowed' }; // Bisa dikombinasikan dengan disabled prop
+    
 
     const reviewListContainerStyle = { marginTop: '20px' };
-    const reviewsGridStyle = { display: 'grid', gap: '15px', gridTemplateColumns: '1fr' }; // Satu kolom untuk review
+    const reviewsGridStyle = { display: 'grid', gap: '15px', gridTemplateColumns: '1fr' }; 
     const reviewCardStyle = { border: '1px solid #e0e0e0', borderRadius: '6px', padding: '15px', backgroundColor: '#fff' };
     const reviewHeaderStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' };
     const reviewUsernameStyle = { fontWeight: 'bold', color: '#333' };

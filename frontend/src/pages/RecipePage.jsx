@@ -1,9 +1,9 @@
-// frontend/src/pages/RecipePage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getRecipeDetailsAPI } from '../services/api';
-import RecipeDetail from '../components/RecipeDetail'; // Asumsikan RecipeDetail akan di-style juga
-import ReviewSection from '../components/ReviewSection'; // Asumsikan ReviewSection akan di-style juga
+import RecipeDetail from '../components/RecipeDetail'; 
+import ReviewSection from '../components/ReviewSection'; 
 
 const RecipePage = () => {
   const [recipe, setRecipe] = useState(null);
@@ -51,18 +51,18 @@ const RecipePage = () => {
   );
 };
 
-// Styling dengan skema warna baru
+
 const primaryColor = '#153568';
-// const secondaryColor = '#fcb936'; // Tidak terlalu banyak digunakan di page-level ini
+
 
 const pageContainerStyle = {
-    maxWidth: '1000px', // Sedikit lebih lebar untuk detail
+    maxWidth: '1000px', 
     margin: '30px auto',
     padding: '20px',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    backgroundColor: '#fff', // Latar putih untuk konten utama
-    borderRadius: '12px', // Sudut melengkung untuk kontainer utama
-    boxShadow: '0 8px 25px rgba(0,0,0,0.1)', // Shadow halus
+    backgroundColor: '#fff', 
+    borderRadius: '12px', 
+    boxShadow: '0 8px 25px rgba(0,0,0,0.1)', 
 };
 
 const backLinkStyle = {
@@ -77,7 +77,7 @@ const backLinkStyle = {
   borderRadius: '8px',
   transition: 'background-color 0.3s, color 0.3s',
 };
-// backLinkStyle:hover { backgroundColor: primaryColor, color: 'white' }
+
 
 const statusMessageStyle = {
     textAlign: 'center',

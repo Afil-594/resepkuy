@@ -1,32 +1,30 @@
-// frontend/src/components/IngredientChecklist.jsx
+
     import React, { useState, useEffect } from 'react';
 
     const IngredientChecklist = ({ ingredients }) => {
-      // State untuk menyimpan status checked dari setiap bahan
-      // Key-nya adalah ID bahan atau original string, value-nya boolean (true/false)
+      
+      
       const [checkedItems, setCheckedItems] = useState({});
 
-      // Inisialisasi checkedItems saat props ingredients berubah
+      
       useEffect(() => {
         const initialCheckedState = {};
         if (ingredients && ingredients.length > 0) {
           ingredients.forEach(ingredient => {
-            // Gunakan ingredient.id jika ada, jika tidak gunakan ingredient.original sebagai fallback key unik
+            
             const key = ingredient.id ? ingredient.id.toString() : ingredient.original;
-            initialCheckedState[key] = false; // Default semua belum tercentang
+            initialCheckedState[key] = false; 
           });
         }
         setCheckedItems(initialCheckedState);
-        // Untuk pengembangan: Anda bisa menambahkan logika untuk memuat status dari localStorage
-        // jika ingin checklist ini persisten antar sesi untuk resep yang sama.
       }, [ingredients]);
 
       const handleCheckboxChange = (ingredientKey) => {
         setCheckedItems(prevCheckedItems => ({
           ...prevCheckedItems,
-          [ingredientKey]: !prevCheckedItems[ingredientKey] // Toggle status checked
+          [ingredientKey]: !prevCheckedItems[ingredientKey] 
         }));
-        // Untuk pengembangan: Simpan perubahan ke localStorage di sini jika menggunakan persistensi.
+        
       };
 
       if (!ingredients || ingredients.length === 0) {
@@ -36,14 +34,14 @@
       return (
         <ul style={listStyle}>
           {ingredients.map((ingredient, index) => {
-            // Tentukan key unik untuk setiap item checkbox
+            
             const ingredientKey = ingredient.id ? ingredient.id.toString() : ingredient.original;
             return (
               <li key={ingredientKey || index} style={listItemStyle}>
                 <label style={labelStyle}>
                   <input
                     type="checkbox"
-                    checked={!!checkedItems[ingredientKey]} // Pastikan value adalah boolean
+                    checked={!!checkedItems[ingredientKey]} 
                     onChange={() => handleCheckboxChange(ingredientKey)}
                     style={checkboxStyle}
                   />
@@ -58,7 +56,7 @@
       );
     };
 
-    // Styling
+    
     const listStyle = {
       listStyleType: 'none',
       padding: 0,
@@ -83,7 +81,7 @@
 
     const checkboxStyle = {
       marginRight: '12px',
-      width: '18px', // Ukuran checkbox
+      width: '18px', 
       height: '18px',
       cursor: 'pointer',
     };

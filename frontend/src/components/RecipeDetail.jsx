@@ -1,8 +1,8 @@
-    // frontend/src/components/RecipeDetail.jsx
+    
     import React from 'react';
     import FavoriteButton from './FavoriteButton';
     import IngredientChecklist from './IngredientChecklist';
-    import ShoppingList from './ShoppingList'; // <-- Impor ShoppingList
+    import ShoppingList from './ShoppingList'; 
 
     const RecipeDetail = ({ recipe }) => {
       if (!recipe) {
@@ -38,7 +38,7 @@
 
             <div style={infoBoxStyle}>
               <h3 style={sectionTitleStyle}>Daftar Belanja</h3>
-              {/* Ganti placeholder dengan ShoppingList */}
+              {}
               <ShoppingList ingredients={recipe.extendedIngredients || []} />
             </div>
           </div>
@@ -67,7 +67,7 @@
       );
     };
 
-    // Styling (tetap sama)
+    
     const loadingStyle = {  
         textAlign: 'center', 
         padding: '50px', 
@@ -88,7 +88,7 @@
     const instructionsListStyle = { listStyleType: 'decimal', paddingLeft: '20px', lineHeight: '1.8' };
     const stepStyle = { marginBottom: '10px' };
     const sourceLinkStyle = { color: '#007bff', textDecoration: 'none' };
-    // const placeholderTextStyle = { ... }; // Bisa dihapus jika sudah tidak terpakai di bagian Daftar Belanja
+    
 
     export default RecipeDetail;
     

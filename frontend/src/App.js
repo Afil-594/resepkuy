@@ -1,11 +1,11 @@
-// frontend/src/App.js
+
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import RecipePage from './pages/RecipePage';
-import FavoritesPage from './pages/FavoritesPage'; // Pastikan ini diimpor
+import FavoritesPage from './pages/FavoritesPage'; 
 import './App.css';
 
 function App() {

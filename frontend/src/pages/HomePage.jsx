@@ -1,54 +1,54 @@
-// frontend/src/pages/HomePage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RecipeFilters from '../components/RecipeFilters';
-import { searchRecipesAPI } from '../services/api'; // Asumsi ada fungsi ini di api.js
+import { searchRecipesAPI } from '../services/api'; 
 
-// --- MULAI BAGIAN BARU UNTUK RESEP UNGGULAN DARI API ---
-// Fungsi ini idealnya ada di src/services/api.js dan memanggil backend Anda
-// Untuk contoh ini, kita buat mock function di sini atau asumsikan searchRecipesAPI bisa dimodif
+
+
+
 const getFeaturedRecipesAPI = async () => {
-  // Ini adalah MOCK API call.
-  // Sebenarnya, Anda akan memanggil endpoint backend Anda, misal: apiClient.get('/recipes/featured')
-  // Backend Anda kemudian akan memanggil Spoonacular.
-  // Untuk contoh ini, kita gunakan searchRecipesAPI dengan query tertentu sebagai placeholder.
+  
+  
+  
+  
   try {
-    // Ambil beberapa resep dengan query umum atau acak, atau resep populer
-    // Misalnya, kita ambil resep pasta populer
-    const response = await searchRecipesAPI({ query: 'popular pasta', number: 3 }); // Ambil 3 resep
-    // Pastikan respons.data adalah array resep seperti yang diharapkan
+    
+    
+    const response = await searchRecipesAPI({ query: 'popular pasta', number: 3 }); 
+    
     if (response.data && Array.isArray(response.data)) {
-      return response.data.map(recipe => ({ // Sesuaikan mapping jika struktur data API berbeda
+      return response.data.map(recipe => ({ 
         id: recipe.id,
         title: recipe.title,
-        image: recipe.image, // URL gambar dari API Spoonacular
+        image: recipe.image, 
       }));
     }
-    return []; // Kembalikan array kosong jika tidak ada data atau format salah
+    return []; 
   } catch (error) {
     console.error("Error fetching featured recipes:", error);
-    return []; // Kembalikan array kosong jika error
+    return []; 
   }
 };
-// --- AKHIR BAGIAN BARU UNTUK RESEP UNGGULAN DARI API ---
+
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [ingredients, setIngredients] = useState('');
   const navigate = useNavigate();
 
-  // State untuk resep unggulan
+  
   const [featuredRecipes, setFeaturedRecipes] = useState([]);
   const [isLoadingFeatured, setIsLoadingFeatured] = useState(true);
   const [errorFeatured, setErrorFeatured] = useState('');
 
-  // useEffect untuk mengambil resep unggulan saat komponen dimuat
+  
   useEffect(() => {
     const loadFeaturedRecipes = async () => {
       setIsLoadingFeatured(true);
       setErrorFeatured('');
       try {
-        const data = await getFeaturedRecipesAPI(); // Panggil fungsi API
+        const data = await getFeaturedRecipesAPI(); 
         setFeaturedRecipes(data);
       } catch (error) {
         setErrorFeatured('Gagal memuat resep unggulan.');
@@ -58,7 +58,7 @@ const HomePage = () => {
       }
     };
     loadFeaturedRecipes();
-  }, []); // Array dependensi kosong agar hanya berjalan sekali saat mount
+  }, []); 
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -154,7 +154,7 @@ const HomePage = () => {
                                 src={recipe.image || 'https://placehold.co/400x300/cccccc/333333?text=Gambar+Tidak+Tersedia'} 
                                 alt={recipe.title} 
                                 style={featuredImageStyle} 
-                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x300/cccccc/333333?text=Gagal+Muat'; }} // Fallback jika gambar error
+                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x300/cccccc/333333?text=Gagal+Muat'; }} 
                             />
                             <h3 style={featuredTitleStyle}>{recipe.title}</h3>
                         </div>
@@ -167,7 +167,7 @@ const HomePage = () => {
   );
 };
 
-// Styling (tetap sama seperti sebelumnya)
+
 const primaryColor = '#153568';
 const secondaryColor = '#fcb936';
 const pageStyle = { /* ... */ };

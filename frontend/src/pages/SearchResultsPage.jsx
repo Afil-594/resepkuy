@@ -1,8 +1,8 @@
-// frontend/src/pages/SearchResultsPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { searchRecipesAPI, findRecipesByIngredientsAPI } from '../services/api';
-import RecipeCard from '../components/RecipeCard'; // Kita asumsikan RecipeCard sudah punya style yang bagus atau kita sesuaikan di sini
+import RecipeCard from '../components/RecipeCard'; 
 
 const SearchResultsPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -21,7 +21,7 @@ const SearchResultsPage = () => {
       const diet = queryParams.get('diet');
       const maxCalories = queryParams.get('maxCalories');
 
-      // Menentukan teks pencarian untuk ditampilkan
+      
       if (query) {
         setSearchQueryDisplay(`untuk "${query}"`);
       } else if (ingredients) {
@@ -41,11 +41,11 @@ const SearchResultsPage = () => {
 
         if (ingredients) {
           apiParams.ingredients = ingredients;
-          // Tambahkan filter lain jika ada untuk pencarian bahan
-          if (cuisine) apiParams.cuisine = cuisine; // Spoonacular findByIngredients tidak support banyak filter
+          
+          if (cuisine) apiParams.cuisine = cuisine; 
           if (diet) apiParams.diet = diet;
           if (maxCalories) apiParams.maxCalories = maxCalories;
-          response = await findRecipesByIngredientsAPI(apiParams.ingredients); // Sesuaikan jika findRecipesByIngredientsAPI menerima objek params
+          response = await findRecipesByIngredientsAPI(apiParams.ingredients); 
           setRecipes(response.data || []);
         } else {
           apiParams.query = query;
@@ -84,7 +84,7 @@ const SearchResultsPage = () => {
       {!isLoading && !error && recipes.length > 0 && (
         <div style={gridStyle}>
           {recipes.map(recipe => (
-            // Menggunakan style dari RecipeCard.jsx, pastikan itu juga konsisten atau override di sini jika perlu
+            
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>
@@ -93,26 +93,26 @@ const SearchResultsPage = () => {
   );
 };
 
-// Styling dengan skema warna baru
-const primaryColor = '#153568'; // Biru tua
-const secondaryColor = '#fcb936'; // Kuning/Oranye
+
+const primaryColor = '#153568'; 
+const secondaryColor = '#fcb936'; 
 
 const pageContainerStyle = {
     maxWidth: '1200px',
-    margin: '30px auto', // Beri jarak dari navbar
+    margin: '30px auto', 
     padding: '20px',
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", // Contoh font modern
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", 
 };
 
 const pageTitleStyle = {
-  fontSize: '2.5rem', // Ukuran judul
+  fontSize: '2.5rem', 
   fontWeight: 'bold',
   color: primaryColor,
   textAlign: 'center',
   marginBottom: '30px',
-  paddingBottom: '15px', // Padding bawah untuk garis
+  paddingBottom: '15px', 
   borderBottom: `4px solid ${secondaryColor}`,
-  display: 'inline-block', // Agar border-bottom tidak full width
+  display: 'inline-block', 
   position: 'relative',
   left: '50%',
   transform: 'translateX(-50%)',
@@ -130,14 +130,14 @@ const backLinkStyle = {
   borderRadius: '8px',
   transition: 'background-color 0.3s, color 0.3s',
 };
-// backLinkStyle:hover { backgroundColor: primaryColor, color: 'white' } // Efek via CSS
+
 
 const statusMessageStyle = {
     textAlign: 'center',
-    fontSize: '1.3rem', // Sedikit lebih besar
+    fontSize: '1.3rem', 
     color: '#555',
-    padding: '60px 20px', // Padding lebih banyak
-    backgroundColor: '#f9f9f9', // Latar belakang lembut untuk pesan
+    padding: '60px 20px', 
+    backgroundColor: '#f9f9f9', 
     borderRadius: '10px',
     border: '1px dashed #ddd',
 };
@@ -145,7 +145,7 @@ const statusMessageStyle = {
 const gridStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-  gap: '30px', // Jarak antar kartu
+  gap: '30px', 
   marginTop: '20px',
 };
 
