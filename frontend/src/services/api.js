@@ -29,7 +29,7 @@ export const findRecipesByIngredientsAPI = (ingredients, number) => {
 };
 
 
-const REVIEW_API_KEY = 'f5d23f67e478b128c18503449c3b212f225b518afe9c8f4bc3b7c367e2a90762';
+const REVIEW_API_KEY = process.env.REACT_APP_REVIEW_API_KEY;
 
 export const getReviewsAPI = (recipeId) => {
   return apiClient.get(`/reviews/${recipeId}`, {

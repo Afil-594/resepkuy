@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/aplikas_resep 
+      - SPOONACULAR_API_KEY=${SPOONACULAR_API_KEY}
+      - PORT=${PORT} 
+    volumes:
+      - backend_logs:/usr/src/app/logs
+    networks:
+      - resepkuy-network
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_BACKEND_URL: /api
+        REACT_APP_REVIEW_API_KEY: ${REACT_APP_REVIEW_API_KEY}
+    ports:
+      - "3000:80"
+    networks:
+      - resepkuy-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:4.4
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: aplikas_resep 
+    networks:
+      - resepkuy-network
+    restart: unless-stopped
+
+networks:
+  resepkuy-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+  backend_logs:
+    driver: local
